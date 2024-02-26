@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{cryptocommands}[2014/08/24 Example LaTeX package]
+
+\RequirePackage{amsmath, amssymb, amsfonts}
+\RequirePackage{pifont}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\newif\if@pcminimal
+\newif\if@mathscript
+
+\DeclareOption{pcminimal}{\@pcminimaltrue}
+\DeclareOption{mathscript}{\@mathscripttrue}
+
+\ProcessOptions\relax
+
+\if@pcminimal
+
+	% Mathematical terms
+	\newcommand{\groupG}{\mathbb{G}}
+	\newcommand{\groupH}{\mathbb{H}}
+	
+	\newcommand{\bitset}{\{0, 1\}}
+	
+	\newcommand{\totient}{\varphi}
+	
+	\DeclareMathOperator{\negl}{negl}
+	\DeclareMathOperator{\poly}{poly}
+	
+	% CS terms
+	\newcommand{\bigO}{O}
+	\newcommand{\smallO}{o}
+	\newcommand{\bigTheta}{\Theta}
+	\newcommand{\bigOmega}{\Omega}
+	\newcommand{\smallOmega}{\omega}
+	
+	\makeatletter
+	\def\algfactory#1{\expandafter\def\csname alg#1\endcsname{\mathcal{#1}}}
+	\count@=0
+	\loop
+	\advance\count@ 1
+	\edef\y{\@Alph\count@}%
+	\expandafter\algfactory\y
+	\ifnum\count@<26
+	\repeat
+	\makeatother
+	
+	\newcommand{\oracle}{O}
+	
+	\newcommand{\game}{\mathcal{G}}
+
+\fi
+
+\endinput
