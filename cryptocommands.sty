@@ -4,52 +4,161 @@
 \RequirePackage{amsmath, amssymb, amsfonts}
 \RequirePackage{pifont}
 
+
+%%%% UTILITIES %%%%
+
+\makeatletter
+\newcommand\DEFINEALPHABETLOOP[3]{%
+  \ifx\relax#3\expandafter\@gobble\else\expandafter\@firstofone\fi
+  {\expandafter\newcommand\expandafter*\csname#1#3\endcsname{#2{#3}}%
+   \DEFINEALPHABETLOOP{#1}{#2}}%
+}%
+\newcommand\newcommandAlph[2]{%
+  \DEFINEALPHABETLOOP{#1}{#2}ABCDEFGHIJKLMNOPQRSTUVWXYZ\relax
+}%
+\newcommand\newcommandalph[2]{%
+  \DEFINEALPHABETLOOP{#1}{#2}abcdefghijklmnopqrstuvwxyz\relax
+}%
+\newcommand\newcommandalpha[2]{%
+  \DEFINEALPHABETLOOP{#1}{#2}\csname alpha\endcsname\relax
+}%
+\makeatother
+
+%%%% MATHEMATICS COMMANDS %%%%
+
+\newcommandalph{vec}{\mathbf}
+\newcommandAlph{mat}{\mathbf}
+
+\newcommandAlph{group}{\mathbb}
+\newcommandAlph{ring}{}
+\newcommandAlph{field}{\mathbb}
+\newcommandAlph{set}{}
+
+\newcommand{\Integers}{\mathbb{Z}}
+\newcommand{\IntegersMod}[1]{{\mathbb{Z}_{#1}}}
+\newcommand{\InvIntegersMod}[1]{{\mathbb{Z}^\ast_{#1}}}
+\newcommand{\IntegersGT}[1]{{\mathbb{Z}_{> #1}}}
+\newcommand{\IntegersGE}[1]{{\mathbb{Z}_{\ge #1}}}
+\newcommand{\IntegersLT}[1]{{\mathbb{Z}_{< #1}}}
+\newcommand{\IntegersLE}[1]{{\mathbb{Z}_{\le #1}}}
+\newcommand{\PositiveIntegers}{\IntegersGT{0}}
+\newcommand{\NonnegativeIntegers}{\IntegersGE{0}}
+\newcommand{\NegativeIntegers}{\IntegersLT{0}}
+\newcommand{\Rationals}{\mathbb{Q}}
+\newcommand{\RationalsGT}[1]{{\mathbb{Q}_{> #1}}}
+\newcommand{\RationalsGE}[1]{{\mathbb{Q}_{\ge #1}}}
+\newcommand{\RationalsLT}[1]{{\mathbb{Q}_{< #1}}}
+\newcommand{\RationalsLE}[1]{{\mathbb{Q}_{\le #1}}}
+\newcommand{\PositiveRationals}{\RationalsGT{0}}
+\newcommand{\NonnegativeRationals}{\RationalsGE{0}}
+\newcommand{\NegativeRationals}{\RationalsLT{0}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Irrationals}{{\Reals \setminus \Rationals}}
+\newcommand{\Imaginaries}{{i\Reals}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\Quaternions}{\mathbb{H}}
+\newcommand{\Primes}{\mathbb{P}}
+
+\newcommand{\Bits}{{\{0, 1\}}}
+\newcommand{\Range}[2]{{\{#1, \dots, #2\}}}
+
+\newcommand{\totient}{\varphi}
+
+\DeclareMathOperator{\negl}{negl}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\subpoly}{subpoly}
+\DeclareMathOperator{\superpoly}{superpoly}
+\DeclareMathOperator{\subexp}{subexp}
+\DeclareMathOperator{\superexp}{superexp}
+
+%%%% STANDARD CS COMMANDS %%%%
+\newcommand{\bigO}{O}
+\newcommand{\smallO}{o}
+\newcommand{\bigTheta}{\Theta}
+\newcommand{\bigOmega}{\Omega}
+\newcommand{\smallOmega}{\omega}
+
+\newcommandAlph{alg}{\mathcal}
+\newcommand{\oracle}{O}
+
+\newcommand{\assign}{\leftarrow}
+\newcommand{\dassign}{\leftarrow}
+\newcommand{\rassign}{\leftarrow}
+\newcommand{\sample}{\overset{\raisebox{-0.1em}{$\scriptscriptstyle \$$}}{\leftarrow}}
+\newcommand{\outputs}{\Rightarrow}
+
+%%%% CRYPTOGRAPHY COMMANDS %%%%
+
+%% Cryptography fundamentals %%
+
+\newcommand{\game}{\mathcal{G}}
+\newcommandAlph{adversary}{\mathcal}
+\newcommand{\Adv}[3]{\mathbf{Adv}^{#1}_{#2}(#3)}
+
+%% Basic cryptographic functions %%
+
+\newcommand{\KeyGen}{\mathsf{KeyGen}}
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+\newcommand{\SEnc}{\mathsf{Enc}}
+\newcommand{\SDec}{\mathsf{Dec}}
+\newcommand{\PKEnc}{\mathsf{Enc}}
+\newcommand{\PKDec}{\mathsf{Dec}}
+\newcommand{\Sign}{\mathsf{Sign}}
+\newcommand{\Verify}{\mathsf{Vrfy}}
+
+%% Basic cryptographic schemes %%
+
+\newcommand{\EncScheme}{\mathsf{E}}
+\newcommand{\SEncScheme}{\mathsf{SE}}
+\newcommand{\PKEncScheme}{\mathsf{PKE}}
+\newcommand{\PEEncScheme}{\mathsf{PRE}}
+\newcommand{\SigScheme}{\mathsf{S}}
+\newcommand{\HashFunction}{\mathsf{H}}
+
+%% Basic cryptographic objects %%
+
+\newcommand{\secpar}{\lambda}
+\newcommand{\key}{\mathsf{k}}
+\newcommand{\sk}{\mathsf{sk}}
+\newcommand{\pk}{\mathsf{pk}}
+\newcommand{\vk}{\mathsf{vk}}
+\newcommand{\msg}{\mathsf{msg}}
+\newcommand{\ct}{\mathsf{ct}}
+\newcommand{\sig}{\mathsf{sig}}
+
+%% \Basic cryptographic security definitions %%
+
+\newcommand{\OWF}{\mathsf{OWF}}
+\newcommand{\PRF}{\mathsf{PRF}}
+\newcommand{\PRP}{\mathsf{PRP}}
+\newcommand{\PreimageRes}{\mathsf{PreR}}
+\newcommand{\SecPreimageRes}{\mathsf{2PreR}}
+\newcommand{\CollRes}{\mathsf{CR}}
+\newcommand{\WeakCollRes}{\mathsf{WCR}}
+
+\newcommand{\OWPass}{\mathsf{OW\mbox{-}Pass}}
+\newcommand{\OWCPA}{\mathsf{OW\mbox{-}CPA}}
+\newcommand{\OWCCA}{\mathsf{OW\mbox{-}CCA}}
+\newcommand{\IndPass}{\mathsf{Ind\mbox{-}Pass}}
+\newcommand{\IndCPA}{\mathsf{Ind\mbox{-}CPA}}
+\newcommand{\IndCCA}{\mathsf{Ind\mbox{-}CCA}}
+\newcommand{\IndRPass}{\mathsf{Ind\$\mbox{-}Pass}}
+\newcommand{\IndRCPA}{\mathsf{Ind\$\mbox{-}CPA}}
+\newcommand{\IndRCCA}{\mathsf{Ind\$\mbox{-}CCA}}
+\newcommand{\NMPass}{\mathsf{NM\mbox{-}Pass}}
+\newcommand{\NMCPA}{\mathsf{NM\mbox{-}CPA}}
+\newcommand{\NMCCA}{\mathsf{NM\mbox{-}CCA}}
+\newcommand{\RoRPass}{\mathsf{RoR\mbox{-}Pass}}
+\newcommand{\RoRCPA}{\mathsf{RoR\mbox{-}CPA}}
+\newcommand{\RoRCCA}{\mathsf{RoR\mbox{-}CCA}}
+
+\newcommand{\EUfCMA}{\mathsf{EUf\mbox{-}CMA}}
+\newcommand{\SEUfCMA}{\mathsf{SEUf\mbox{-}CMA}}
+
+%%%% MISCELLANEOUS %%%%
+
+%% Basic symbols
+
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
-
-\newif\if@pcminimal
-\newif\if@mathscript
-
-\DeclareOption{pcminimal}{\@pcminimaltrue}
-\DeclareOption{mathscript}{\@mathscripttrue}
-
-\ProcessOptions\relax
-
-\if@pcminimal
-
-	% Mathematical terms
-	\newcommand{\groupG}{\mathbb{G}}
-	\newcommand{\groupH}{\mathbb{H}}
-	
-	\newcommand{\bitset}{\{0, 1\}}
-	
-	\newcommand{\totient}{\varphi}
-	
-	\DeclareMathOperator{\negl}{negl}
-	\DeclareMathOperator{\poly}{poly}
-	
-	% CS terms
-	\newcommand{\bigO}{O}
-	\newcommand{\smallO}{o}
-	\newcommand{\bigTheta}{\Theta}
-	\newcommand{\bigOmega}{\Omega}
-	\newcommand{\smallOmega}{\omega}
-	
-	\makeatletter
-	\def\algfactory#1{\expandafter\def\csname alg#1\endcsname{\mathcal{#1}}}
-	\count@=0
-	\loop
-	\advance\count@ 1
-	\edef\y{\@Alph\count@}%
-	\expandafter\algfactory\y
-	\ifnum\count@<26
-	\repeat
-	\makeatother
-	
-	\newcommand{\oracle}{O}
-	
-	\newcommand{\game}{\mathcal{G}}
-
-\fi
-
-\endinput
