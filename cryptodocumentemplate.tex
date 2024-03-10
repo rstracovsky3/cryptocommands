@@ -1,12 +1,20 @@
-\documentclass[usenix-proceedings]{cryptodocument}
+\documentclass[eprint]{cryptodocument}
 
 \usepackage{blindtext}
 
 \title{CryptoDocument Template}
 \titlerunning{Title Running Here}
 
-\author{Author Names Here}
-\institute{Institute Names Here}
+% Single institution declarations can be done using the following commented code
+% \addauthor{Author 1}
+% \addauthor{Author 2}
+% \addinstitute{Sole Institute \\ \texttt{\{a1, a2\}@soleinst.edu}}
+
+\addauthor[1]{Author 1}
+\addauthor[1]{Author 2}
+\addauthor[2]{Author 3}
+\addinstitute[1]{Institute 1 \\ \texttt{\{a1, a2\}@inst1.edu}}
+\addinstitute[2]{Institute 2 \\ \texttt{a3@inst2.edu}}
 \authorrunning{Author Running Here}
 
 \begin{document}
