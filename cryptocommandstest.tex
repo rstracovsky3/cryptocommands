@@ -7,7 +7,7 @@
 \usepackage{amsmath, amssymb, amsfonts}
 \usepackage{pifont}
 
-\usepackage[pcminimal]{cryptocommands}
+\usepackage{cryptocommands}
 
 \title{CryptoCommands Test}
 \author{Roy Stracovsky}
@@ -15,8 +15,20 @@
 \begin{document}
 \maketitle
 
-$\algA$, $\algF$.
+$\algA$, $\algF$, $\algQ$. I like the group $\groupG$ and $\ringR$, $\fieldF$. $\bot$ vs $\perp$
+$\game$. and a bunch of random text to make the line longer and stuff. If I were to add more text would this work even more let me check.
 
+$\Enc$ and $\Dec$ and $\Verify$ of $\PKEncScheme.\PKEnc(\pk, \msg)$.
+$\ct \sample \PKEncScheme.\PKEnc(\pk, \msg)$ and a bunch of random text to make the line longer and stuff.
 
+$$ \Adv{\OWPass}{\SEncScheme, \algA}{\secpar} = \Pr[\game^\IndRCCA_{\SEncScheme, \algA}(\secpar) \outputs 1].$$
+$$ \Adv{\SecPreimageRes}{\SEncScheme, \algA}{\secpar} = \Pr[\game^\EUfCMA_{\SEncScheme, \algA}(\secpar) \outputs 1].$$
+
+We like random oracles $\oracle$ and also some linear algebra $\matA\vecs + \vece$. The $\NonnegativeIntegers$ is less ambiguous than using naturals.
+We work with $\InvIntegersMod{p}$ quite a lot and rarely $\NegativeIntegers$. Also $\Irrationals$ and $\Imaginaries$ haha.
+
+I think I realized something. $2^\Bits$ no longer fails right.
+Sample an $i \sample \Range{1}{q_H}$. $f = \gcd(\secpar)$. It is $\bigO(n^2)$.
+Let $\adversaryA = (\algA_0, \algA_1)$.  
 
 \end{document}  

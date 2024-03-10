@@ -24,6 +24,8 @@
 }%
 \makeatother
 
+\newcommand{\mbdash}{\mbox{-}}
+
 %%%% MATHEMATICS COMMANDS %%%%
 
 \newcommandalph{vec}{\mathbf}
@@ -72,6 +74,7 @@
 \DeclareMathOperator{\superexp}{superexp}
 
 %%%% STANDARD CS COMMANDS %%%%
+
 \newcommand{\bigO}{O}
 \newcommand{\smallO}{o}
 \newcommand{\bigTheta}{\Theta}
@@ -82,9 +85,9 @@
 \newcommand{\oracle}{O}
 
 \newcommand{\assign}{\leftarrow}
-\newcommand{\dassign}{\leftarrow}
-\newcommand{\rassign}{\leftarrow}
 \newcommand{\sample}{\overset{\raisebox{-0.1em}{$\scriptscriptstyle \$$}}{\leftarrow}}
+\newcommand{\dassign}{\assign}
+\newcommand{\rassign}{\sample}
 \newcommand{\outputs}{\Rightarrow}
 
 %%%% CRYPTOGRAPHY COMMANDS %%%%
@@ -97,6 +100,8 @@
 
 %% Basic cryptographic functions %%
 
+\newcommand{\Init}{\mathsf{Init}}
+\newcommand{\ParamGen}{\mathsf{ParamGen}}
 \newcommand{\KeyGen}{\mathsf{KeyGen}}
 \newcommand{\Enc}{\mathsf{Enc}}
 \newcommand{\Dec}{\mathsf{Dec}}
@@ -106,23 +111,44 @@
 \newcommand{\PKDec}{\mathsf{Dec}}
 \newcommand{\Sign}{\mathsf{Sign}}
 \newcommand{\Verify}{\mathsf{Vrfy}}
+\newcommand{\Evaluate}{\mathsf{Eval}}
+\newcommand{\Encaps}{\mathsf{Encaps}}
+\newcommand{\Decaps}{\mathsf{Decaps}}
+\newcommand{\Encode}{\mathsf{Encode}}
+\newcommand{\Decode}{\mathsf{Decode}}
 
 %% Basic cryptographic schemes %%
+
+\newcommand{\OWFFunc}{\mathsf{F}}
+\newcommand{\PRFunc}{\mathsf{F}}
+\newcommand{\PRPerm}{\mathsf{P}}
+\newcommand{\HashFunc}{\mathsf{H}}
+\newcommand{\KDFunc}{\mathsf{KDF}}
 
 \newcommand{\EncScheme}{\mathsf{E}}
 \newcommand{\SEncScheme}{\mathsf{SE}}
 \newcommand{\PKEncScheme}{\mathsf{PKE}}
-\newcommand{\PEEncScheme}{\mathsf{PRE}}
+\newcommand{\PREncScheme}{\mathsf{PRE}}
+\newcommand{\NonceEncScheme}{\mathsf{NE}}
+\newcommand{\AuthEncScheme}{\mathsf{AE}}
+\newcommand{\AuthEncAssocDataScheme}{\mathsf{AEAD}}
+
+\newcommand{\KeyEncapsMech}{\mathsf{KEM}}
+\newcommand{\DataEncapsMech}{\mathsf{DEM}}
+
+\newcommand{\MsgAuthCode}{\mathsf{MAC}}
 \newcommand{\SigScheme}{\mathsf{S}}
-\newcommand{\HashFunction}{\mathsf{H}}
 
 %% Basic cryptographic objects %%
 
 \newcommand{\secpar}{\lambda}
+\newcommand{\params}{\mathsf{params}}
+\newcommand{\publicparams}{\mathsf{pp}}
 \newcommand{\key}{\mathsf{k}}
 \newcommand{\sk}{\mathsf{sk}}
 \newcommand{\pk}{\mathsf{pk}}
 \newcommand{\vk}{\mathsf{vk}}
+\newcommand{\pad}{\mathsf{pad}}
 \newcommand{\msg}{\mathsf{msg}}
 \newcommand{\ct}{\mathsf{ct}}
 \newcommand{\sig}{\mathsf{sig}}
@@ -137,24 +163,25 @@
 \newcommand{\CollRes}{\mathsf{CR}}
 \newcommand{\WeakCollRes}{\mathsf{WCR}}
 
-\newcommand{\OWPass}{\mathsf{OW\mbox{-}Pass}}
-\newcommand{\OWCPA}{\mathsf{OW\mbox{-}CPA}}
-\newcommand{\OWCCA}{\mathsf{OW\mbox{-}CCA}}
-\newcommand{\IndPass}{\mathsf{Ind\mbox{-}Pass}}
-\newcommand{\IndCPA}{\mathsf{Ind\mbox{-}CPA}}
-\newcommand{\IndCCA}{\mathsf{Ind\mbox{-}CCA}}
-\newcommand{\IndRPass}{\mathsf{Ind\$\mbox{-}Pass}}
-\newcommand{\IndRCPA}{\mathsf{Ind\$\mbox{-}CPA}}
-\newcommand{\IndRCCA}{\mathsf{Ind\$\mbox{-}CCA}}
-\newcommand{\NMPass}{\mathsf{NM\mbox{-}Pass}}
-\newcommand{\NMCPA}{\mathsf{NM\mbox{-}CPA}}
-\newcommand{\NMCCA}{\mathsf{NM\mbox{-}CCA}}
-\newcommand{\RoRPass}{\mathsf{RoR\mbox{-}Pass}}
-\newcommand{\RoRCPA}{\mathsf{RoR\mbox{-}CPA}}
-\newcommand{\RoRCCA}{\mathsf{RoR\mbox{-}CCA}}
+\newcommand{\OWPass}{\mathsf{OW \mbdash Pass}}
+\newcommand{\OWCPA}{\mathsf{OW \mbdash CPA}}
+\newcommand{\OWCCA}{\mathsf{OW \mbdash CCA}}
+\newcommand{\IndPass}{\mathsf{Ind \mbdash Pass}}
+\newcommand{\IndCPA}{\mathsf{Ind \mbdash CPA}}
+\newcommand{\IndCCA}{\mathsf{Ind \mbdash CCA}}
+\newcommand{\IndRPass}{\mathsf{Ind\$ \mbdash Pass}}
+\newcommand{\IndRCPA}{\mathsf{Ind\$ \mbdash CPA}}
+\newcommand{\IndRCCA}{\mathsf{Ind\$ \mbdash CCA}}
+\newcommand{\NMPass}{\mathsf{NM \mbdash Pass}}
+\newcommand{\NMCPA}{\mathsf{NM \mbdash CPA}}
+\newcommand{\NMCCA}{\mathsf{NM \mbdash CCA}}
+\newcommand{\RoRPass}{\mathsf{RoR \mbdash Pass}}
+\newcommand{\RoRCPA}{\mathsf{RoR \mbdash CPA}}
+\newcommand{\RoRCCA}{\mathsf{RoR \mbdash CCA}}
 
-\newcommand{\EUfCMA}{\mathsf{EUf\mbox{-}CMA}}
-\newcommand{\SEUfCMA}{\mathsf{SEUf\mbox{-}CMA}}
+\newcommand{\UfCMA}{\mathsf{Uf \mbdash CMA}}
+\newcommand{\EUfCMA}{\mathsf{EUf \mbdash CMA}}
+\newcommand{\SEUfCMA}{\mathsf{SEUf \mbdash CMA}}
 
 %%%% MISCELLANEOUS %%%%
 
