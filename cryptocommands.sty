@@ -7,6 +7,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cryptocommands/cryptocommands}[2014/08/24 Example LaTeX package]
 
+\RequirePackage{color}
 \RequirePackage{amsmath, amssymb, amsfonts}
 \RequirePackage{pifont}
 
@@ -198,3 +199,12 @@
 
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
+
+%%%% WRITING AIDS %%%%
+
+\newcommand{\todored}[1]{{\color{red}#1}}
+\newcommand{\todogreen}[1]{{\color{green}#1}}
+\newcommand{\todoblue}[1]{{\color{blue}#1}}
+\newcommand{\todocyan}[1]{{\color{cyan}#1}}
+\newcommand{\todomagenta}[1]{{\color{magenta}#1}}
+\newcommand{\todoyellow}[1]{{\color{yellow}#1}}
