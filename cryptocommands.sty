@@ -1,5 +1,11 @@
+% Silences warnings where this file is called in a different directory structure!
+% Must go before ProvidesPackage is called.
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package}
+
+% Start of commands specification.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{cryptocommands}[2014/08/24 Example LaTeX package]
+\ProvidesPackage{cryptocommands/cryptocommands}[2014/08/24 Example LaTeX package]
 
 \RequirePackage{amsmath, amssymb, amsfonts}
 \RequirePackage{pifont}
@@ -143,6 +149,7 @@
 
 \newcommand{\st}{\mathsf{st}}
 
+\providecommand{\secpar}{}
 \renewcommand{\secpar}{\lambda}
 \newcommand{\params}{\mathsf{params}}
 \newcommand{\publicparams}{\mathsf{pp}}
