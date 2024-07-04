@@ -12,7 +12,7 @@
 \RequirePackage{pifont}
 
 
-%%%% UTILITIES %%%%
+%%%% INTERNAL UTILITIES %%%%
 
 \makeatletter
 \newcommand\DEFINEALPHABETLOOP[3]{%
@@ -32,6 +32,10 @@
 \makeatother
 
 \newcommand{\mbdash}{\mbox{-}}
+
+%%%% EXTERNAL UITILITIES %%%%
+
+% TODO
 
 %%%% MATHEMATICS COMMANDS %%%%
 
@@ -102,7 +106,7 @@
 %% Cryptography fundamentals %%
 
 \newcommand{\game}{\mathcal{G}}
-\newcommandAlph{adversary}{\mathcal}
+\newcommandAlph{adv}{\mathcal}
 \newcommand{\Adv}[3]{\mathbf{Adv}^{#1}_{#2}(#3)}
 
 %% Basic cryptographic functions %%
