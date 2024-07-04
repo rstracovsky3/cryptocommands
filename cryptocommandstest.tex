@@ -4,7 +4,11 @@
 	
 \usepackage{color}
 \usepackage{amsmath, amssymb, amsfonts}
+\usepackage{bm}
 \usepackage{pifont}
+\usepackage{cryptocode}
+
+\usepackage{tabularx, booktabs}
 
 \usepackage{cryptocommands}
 
@@ -13,6 +17,7 @@
 
 \begin{document}
 \maketitle
+
 
 $\algA$, $\algF$, $\algQ$. I like the group $\groupG$ and $\ringR$, $\fieldF$. $\bot$ vs $\perp$
 $\game$. and a bunch of random text to make the line longer and stuff. If I were to add more text would this work even more let me check.
@@ -23,7 +28,7 @@ $\ct \sample \PKEncScheme.\PKEnc(\pk, \msg)$ and a bunch of random text to make 
 $$ \Adv{\OWPass}{\SEncScheme, \algA}{\secpar} = \Pr[\game^\IndRCCA_{\SEncScheme, \algA}(\secpar) \outputs 1].$$
 $$ \Adv{\SecPreimageRes}{\SEncScheme, \algA}{\secpar} = \Pr[\game^\EUfCMA_{\SEncScheme, \algA}(\secpar) \outputs 1].$$
 
-We like random oracles $\oracle$ and also some linear algebra $\matA\vecs + \vece$. The $\NonnegativeIntegers$ is less ambiguous than using naturals.
+We like random oracles $\oracle$ and also some linear algebra $\matA\vecs + \vece$. Greek letter $\matXi\vecvarkappa - \veceta$. The $\NonnegativeIntegers$ is less ambiguous than using naturals.
 We work with $\InvIntegersMod{p}$ quite a lot and rarely $\NegativeIntegers$. Also $\Irrationals$ and $\Imaginaries$ haha.
 
 I think I realized something. $2^\Bits$ no longer fails right.
@@ -31,5 +36,24 @@ Sample an $i \sample \Range{1}{q_H}$. $f = \gcd(\secpar)$. It is $\bigO(n^2)$.
 Let $\advA = (\algA_0, \algA_1, \algA_2)$.
 
 \todored{Here are some notes I have.} \todoblue{Here are some other notes.} \todomagenta{Here are some final notes.}
+
+\section{Basic Mathematics Symbols}
+
+\begin{table}
+    \centering
+    \begin{tabularx}{\textwidth}{lX}
+        \toprule
+        & Commands \\
+        \midrule
+        Vectors & \printsmcmd{veca}, \printsmcmd{vecb}, \printsmcmd{vecc}, \printsmcmd{vecd}, \printsmcmd{vece}, \printsmcmd{vecf}, \printsmcmd{vecg}, \printsmcmd{vech}, \printsmcmd{veci}, \printsmcmd{vecj}, \printsmcmd{veck}, \printsmcmd{vecl}, \printsmcmd{vecm}, \printsmcmd{vecn}, \printsmcmd{veco}, \printsmcmd{vecp}, \printsmcmd{vecq}, \printsmcmd{vecr}, \printsmcmd{vecs}, \printsmcmd{vect}, \printsmcmd{vecu}, \printsmcmd{vecv}, \printsmcmd{vecw}, \printsmcmd{vecx}, \printsmcmd{vecy}, \printsmcmd{vecz}, \printsmcmd{vecalpha}, \printsmcmd{vecbeta}, \printsmcmd{vecgamma}, \printsmcmd{vecdelta}, \printsmcmd{vecepsilon}, \printsmcmd{veczeta}, \printsmcmd{veceta}, \printsmcmd{vectheta}, \printsmcmd{veciota}, \printsmcmd{veckappa}, \printsmcmd{veclambda}, \printsmcmd{vecmu}, \printsmcmd{vecnu}, \printsmcmd{vecxi}, \printsmcmd{vecpi}, \printsmcmd{vecrho}, \printsmcmd{vecsigma}, \printsmcmd{vectau}, \printsmcmd{vecupsilon}, \printsmcmd{vecphi}, \printsmcmd{vecchi}, \printsmcmd{vecpsi}, \printsmcmd{vecomega}, \printsmcmd{vecvarepsilon}, \printsmcmd{vecvartheta}, \printsmcmd{vecvarkappa}, \printsmcmd{vecvarpi}, \printsmcmd{vecvarrho}, \printsmcmd{vecvarsigma}, \printsmcmd{vecvarphi}, \printsmcmd{veczero}, \printsmcmd{vecone}.
+        \\
+        & Commands \\
+        \midrule
+        Normal Vectors & \printsmcmd{nveca}, \printsmcmd{nvecb}, \printsmcmd{nvecc}, \printsmcmd{nvecd}, \printsmcmd{nvece}, \printsmcmd{nvecf}, \printsmcmd{nvecg}, \printsmcmd{nvech}, \printsmcmd{nveci}, \printsmcmd{nvecj}, \printsmcmd{nveck}, \printsmcmd{nvecl}, \printsmcmd{nvecm}, \printsmcmd{nvecn}, \printsmcmd{nveco}, \printsmcmd{nvecp}, \printsmcmd{nvecq}, \printsmcmd{nvecr}, \printsmcmd{nvecs}, \printsmcmd{nvect}, \printsmcmd{nvecu}, \printsmcmd{nvecv}, \printsmcmd{nvecw}, \printsmcmd{nvecx}, \printsmcmd{nvecy}, \printsmcmd{nvecz}, \printsmcmd{nvecalpha}, \printsmcmd{nvecbeta}, \printsmcmd{nvecgamma}, \printsmcmd{nvecdelta}, \printsmcmd{nvecepsilon}, \printsmcmd{nveczeta}, \printsmcmd{nveceta}, \printsmcmd{nvectheta}, \printsmcmd{nveciota}, \printsmcmd{nveckappa}, \printsmcmd{nveclambda}, \printsmcmd{nvecmu}, \printsmcmd{nvecnu}, \printsmcmd{nvecxi}, \printsmcmd{nvecpi}, \printsmcmd{nvecrho}, \printsmcmd{nvecsigma}, \printsmcmd{nvectau}, \printsmcmd{nvecupsilon}, \printsmcmd{nvecphi}, \printsmcmd{nvecchi}, \printsmcmd{nvecpsi}, \printsmcmd{nvecomega}, \printsmcmd{nvecvarepsilon}, \printsmcmd{nvecvartheta}, \printsmcmd{nvecvarkappa}, \printsmcmd{nvecvarpi}, \printsmcmd{nvecvarrho}, \printsmcmd{nvecvarsigma}, \printsmcmd{nvecvarphi}, \printsmcmd{nveczero}, \printsmcmd{nvecone}. \\
+        \midrule
+        Matrices & \printsmcmd{matA}, \printsmcmd{matB}, \printsmcmd{matC}, \printsmcmd{matD}, \printsmcmd{matE}, \printsmcmd{matF}, \printsmcmd{matG}, \printsmcmd{matH}, \printsmcmd{matI}, \printsmcmd{matJ}, \printsmcmd{matK}, \printsmcmd{matL}, \printsmcmd{matM}, \printsmcmd{matN}, \printsmcmd{matO}, \printsmcmd{matP}, \printsmcmd{matQ}, \printsmcmd{matR}, \printsmcmd{matS}, \printsmcmd{matT}, \printsmcmd{matU}, \printsmcmd{matV}, \printsmcmd{matW}, \printsmcmd{matX}, \printsmcmd{matY}, \printsmcmd{matZ}, \printsmcmd{matGamma}, \printsmcmd{matDelta}, \printsmcmd{matTheta}, \printsmcmd{matLambda}, \printsmcmd{matXi}, \printsmcmd{matPi}, \printsmcmd{matSigma}, \printsmcmd{matUpsilon}, \printsmcmd{matPhi}, \printsmcmd{matPsi}, \printsmcmd{matOmega}. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
 
 \end{document}  

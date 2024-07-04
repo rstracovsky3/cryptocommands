@@ -7,45 +7,127 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{cryptocommands/cryptocommands}[2014/08/24 Example LaTeX package]
 
+\RequirePackage{ifthen}
+
 \RequirePackage{color}
 \RequirePackage{amsmath, amssymb, amsfonts}
+\RequirePackage{bm}
 \RequirePackage{pifont}
+\RequirePackage{cryptocode}
 
-
-%%%% INTERNAL UTILITIES %%%%
+%%%% FUNDAMENTAL UTILITIES %%%%
 
 \makeatletter
-\newcommand\DEFINEALPHABETLOOP[3]{%
+\newcommand\DEFINECHARLOOP[3]{%
   \ifx\relax#3\expandafter\@gobble\else\expandafter\@firstofone\fi
   {\expandafter\newcommand\expandafter*\csname#1#3\endcsname{#2{#3}}%
-   \DEFINEALPHABETLOOP{#1}{#2}}%
+   \DEFINECHARLOOP{#1}{#2}}%
 }%
-\newcommand\newcommandAlph[2]{%
-  \DEFINEALPHABETLOOP{#1}{#2}ABCDEFGHIJKLMNOPQRSTUVWXYZ\relax
+\newcommand\DEFINECMDLOOP[3]{%
+  \ifx\relax#3\expandafter\@gobble\else\expandafter\@firstofone\fi
+  {\expandafter\newcommand\expandafter*\csname#1#3\endcsname{#2{\csname#3\endcsname}}%
+   \DEFINECMDLOOP{#1}{#2}}%
 }%
-\newcommand\newcommandalph[2]{%
-  \DEFINEALPHABETLOOP{#1}{#2}abcdefghijklmnopqrstuvwxyz\relax
+\newcommand\newcommandLatinUpper[2]{%
+  \DEFINECHARLOOP{#1}{#2}ABCDEFGHIJKLMNOPQRSTUVWXYZ\relax
 }%
-\newcommand\newcommandalpha[2]{%
-  \DEFINEALPHABETLOOP{#1}{#2}\csname alpha\endcsname\relax
+\newcommand\newcommandLatinLower[2]{%
+  \DEFINECHARLOOP{#1}{#2}abcdefghijklmnopqrstuvwxyz\relax
+}%
+\newcommand\newcommandGreekUpper[2]{%
+  \DEFINECMDLOOP{#1}{#2}{Gamma}{Delta}{Theta}{Lambda}{Xi}{Pi}{Sigma}{Upsilon}{Phi}{Psi}{Omega}{\relax}%
+}%
+\newcommand\newcommandGreekLower[2]{%
+  \DEFINECMDLOOP{#1}{#2}{alpha}{beta}{gamma}{delta}{epsilon}{zeta}{eta}{theta}{iota}{kappa}{lambda}{mu}{nu}{xi}{pi}{rho}{sigma}{tau}{upsilon}{phi}{chi}{psi}{omega}{\relax}%
+}%
+\newcommand\newcommandVarGreekLower[2]{%
+  \DEFINECMDLOOP{#1}{#2}{varepsilon}{vartheta}{varkappa}{varpi}{varrho}{varsigma}{varphi}{\relax}%
 }%
 \makeatother
 
+\newcommand{\printsmcmd}[1]{\texttt{\char`\\ #1} {$\csname#1\endcsname$}}
 \newcommand{\mbdash}{\mbox{-}}
 
 %%%% EXTERNAL UITILITIES %%%%
 
 % TODO
 
+%%%% ENIVORNMENT VARIABLES (AND DEFAULTS) %%%%
+
+\newcommand\ccvectorstyle{bold} % bold, bolditalic, overrightarrow
+\newcommand\ccnormalvectorstyle{boldhat} % hat, boldhat, bolditalichat
+\newcommand\ccmatrixstyle{bold} % bold, none
+
 %%%% MATHEMATICS COMMANDS %%%%
 
-\newcommandalph{vec}{\mathbf}
-\newcommandAlph{mat}{\mathbf}
+%% Vectors and matrices
 
-\newcommandAlph{group}{\mathbb}
-\newcommandAlph{ring}{}
-\newcommandAlph{field}{\mathbb}
-\newcommandAlph{set}{}
+% Vectors
+\ifthenelse{\equal{\ccvectorstyle}{bold}}{
+  \newcommandLatinLower{vec}{\mathbf}
+  \newcommandGreekLower{vec}{\boldsymbol}
+  \newcommandVarGreekLower{vec}{\boldsymbol}
+  \newcommand{\veczero}{\mathbf{0}}
+  \newcommand{\vecone}{\mathbf{1}}
+}{}
+\ifthenelse{\equal{\ccvectorstyle}{bolditalic}}{
+  \newcommandLatinLower{vec}{\boldsymbol}
+  \newcommandGreekLower{vec}{\boldsymbol}
+  \newcommandVarGreekLower{vec}{\boldsymbol}
+  \newcommand{\veczero}{\boldsymbol{\mathit{0}}}
+  \newcommand{\vecone}{\boldsymbol{\mathit{1}}}
+}{}
+\ifthenelse{\equal{\ccvectorstyle}{overrightarrow}}{
+  \newcommandLatinLower{vec}{\vec}
+  \newcommandGreekLower{vec}{\vec}
+  \newcommandVarGreekLower{vec}{\vec}
+  \newcommand{\veczero}{\vec{0}}
+  \newcommand{\vecone}{\vec{1}}
+}{}
+
+% Normal vectors
+\newcommand{\hatmathbf}[1]{\hat{\mathbf{#1}}}
+\newcommand{\hatboldsymbol}[1]{\hat{\boldsymbol{#1}}}
+\ifthenelse{\equal{\ccnormalvectorstyle}{hat}}{
+  \newcommandLatinLower{nvec}{\hat}
+  \newcommandGreekLower{nvec}{\hat}
+  \newcommandVarGreekLower{nvec}{\hat}
+  \newcommand{\nveczero}{\hat{0}}
+  \newcommand{\nvecone}{\hat{1}}
+}{}
+\ifthenelse{\equal{\ccnormalvectorstyle}{boldhat}}{
+  \newcommandLatinLower{nvec}{\hatmathbf}
+  \newcommandGreekLower{nvec}{\hatboldsymbol}
+  \newcommandVarGreekLower{nvec}{\hatboldsymbol}
+  \newcommand{\nveczero}{\hatmathbf{0}}
+  \newcommand{\nvecone}{\hatmathbf{1}}
+}{}
+\ifthenelse{\equal{\ccnormalvectorstyle}{bolditalichat}}{
+  \newcommandLatinLower{nvec}{\hatboldsymbol}
+  \newcommandGreekLower{nvec}{\hatboldsymbol}
+  \newcommandVarGreekLower{nvec}{\hatboldsymbol}
+  \newcommand{\nveczero}{\hatboldsymbol{\mathit{0}}}
+  \newcommand{\nvecone}{\hatboldsymbol{\mathit{1}}}
+}{}
+
+% Matrices
+\ifthenelse{\equal{\ccmatrixstyle}{bold}}{
+  \newcommandLatinUpper{mat}{\mathbf}
+  \newcommandGreekUpper{mat}{\mathbf}
+  \newcommand{\matzero}{\mathbf{0}}
+  \newcommand{\matone}{\mathbf{1}}
+}{}
+\ifthenelse{\equal{\ccmatrixstyle}{none}}{
+  \newcommandLatinUpper{mat}{}
+  \newcommandGreekUpper{mat}{}
+  \newcommand{\matzero}{0}
+  \newcommand{\matone}{1}
+}{}
+
+\newcommandLatinUpper{group}{\mathbb}
+\newcommandLatinUpper{ring}{}
+\newcommandLatinUpper{field}{\mathbb}
+\newcommandLatinUpper{set}{}
 
 \newcommand{\Integers}{\mathbb{Z}}
 \newcommand{\IntegersMod}[1]{{\mathbb{Z}_{#1}}}
@@ -92,7 +174,7 @@
 \newcommand{\bigOmega}{\Omega}
 \newcommand{\smallOmega}{\omega}
 
-\newcommandAlph{alg}{\mathcal}
+\newcommandLatinUpper{alg}{\mathcal}
 \newcommand{\oracle}{O}
 
 \newcommand{\assign}{\leftarrow}
@@ -106,7 +188,7 @@
 %% Cryptography fundamentals %%
 
 \newcommand{\game}{\mathcal{G}}
-\newcommandAlph{adv}{\mathcal}
+\newcommandLatinUpper{adv}{\mathcal}
 \newcommand{\Adv}[3]{\mathbf{Adv}^{#1}_{#2}(#3)}
 
 %% Basic cryptographic functions %%
