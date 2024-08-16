@@ -55,14 +55,25 @@
 %%%% ENIVORNMENT VARIABLES (AND DEFAULTS) %%%%
 
 \newcommand\ccvectorstyle{bold} % bold, bolditalic, overrightarrow
-\newcommand\ccnormalvectorstyle{boldhat} % hat, boldhat, bolditalichat
+\newcommand\ccnormalizedvectorstyle{boldhat} % hat, boldhat, bolditalichat
 \newcommand\ccmatrixstyle{bold} % bold, none
+
+\newcommand\ccgroupstyle{doublestruck}
+\newcommand\ccgroupelementstyle{bold}
 
 %%%% MATHEMATICS COMMANDS %%%%
 
-%% Vectors and matrices
+%% Algebraic elements and sets
+
+\newcommandLatinUpper{ring}{}
+\newcommandLatinUpper{field}{\mathbb}
+\newcommandLatinUpper{set}{}
 
 % Vectors
+
+\newcommandLatinUpper{vectorspace}{}
+\newcommandGreekUpper{vectorspace}{}
+
 \ifthenelse{\equal{\ccvectorstyle}{bold}}{
   \newcommandLatinLower{vec}{\mathbf}
   \newcommandGreekLower{vec}{\boldsymbol}
@@ -86,23 +97,24 @@
 }{}
 
 % Normal vectors
+
 \newcommand{\hatmathbf}[1]{\hat{\mathbf{#1}}}
 \newcommand{\hatboldsymbol}[1]{\hat{\boldsymbol{#1}}}
-\ifthenelse{\equal{\ccnormalvectorstyle}{hat}}{
+\ifthenelse{\equal{\ccnormalizedvectorstyle}{hat}}{
   \newcommandLatinLower{nvec}{\hat}
   \newcommandGreekLower{nvec}{\hat}
   \newcommandVarGreekLower{nvec}{\hat}
   \newcommand{\nveczero}{\hat{0}}
   \newcommand{\nvecone}{\hat{1}}
 }{}
-\ifthenelse{\equal{\ccnormalvectorstyle}{boldhat}}{
+\ifthenelse{\equal{\ccnormalizedvectorstyle}{boldhat}}{
   \newcommandLatinLower{nvec}{\hatmathbf}
   \newcommandGreekLower{nvec}{\hatboldsymbol}
   \newcommandVarGreekLower{nvec}{\hatboldsymbol}
   \newcommand{\nveczero}{\hatmathbf{0}}
   \newcommand{\nvecone}{\hatmathbf{1}}
 }{}
-\ifthenelse{\equal{\ccnormalvectorstyle}{bolditalichat}}{
+\ifthenelse{\equal{\ccnormalizedvectorstyle}{bolditalichat}}{
   \newcommandLatinLower{nvec}{\hatboldsymbol}
   \newcommandGreekLower{nvec}{\hatboldsymbol}
   \newcommandVarGreekLower{nvec}{\hatboldsymbol}
@@ -111,6 +123,7 @@
 }{}
 
 % Matrices
+
 \ifthenelse{\equal{\ccmatrixstyle}{bold}}{
   \newcommandLatinUpper{mat}{\mathbf}
   \newcommandGreekUpper{mat}{\mathbf}
@@ -125,9 +138,8 @@
 }{}
 
 \newcommandLatinUpper{group}{\mathbb}
-\newcommandLatinUpper{ring}{}
-\newcommandLatinUpper{field}{\mathbb}
-\newcommandLatinUpper{set}{}
+
+
 
 \newcommand{\Integers}{\mathbb{Z}}
 \newcommand{\IntegersMod}[1]{{\mathbb{Z}_{#1}}}
